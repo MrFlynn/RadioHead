@@ -75,6 +75,10 @@ byte SPIClass::transfer(byte _data)
   return data;
 }
 
+void SPIClass::usingInterrupt(uint8_t pin) {
+    return;
+}
+
 void pinMode(unsigned char pin, unsigned char mode)
 {
   if (mode == OUTPUT)
@@ -90,6 +94,14 @@ void pinMode(unsigned char pin, unsigned char mode)
 void digitalWrite(unsigned char pin, unsigned char value)
 {
   bcm2835_gpio_write(pin,value);
+}
+
+int digitalPinToInterrupt(uint8_t pin) {
+    return (int)pin;
+}
+
+int attachInterrupt(int pin, int mode, void (*function)(void)) {
+    return wiringPiISR(pin, mode, function);
 }
 
 unsigned long millis()

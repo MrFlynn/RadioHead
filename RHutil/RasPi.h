@@ -7,6 +7,9 @@
 #ifndef RASPI_h
 #define RASPI_h
 
+#define RISING 2
+
+#include <wiringPi.h> // Add ISR capability.
 #include <bcm2835.h>
 
 #include <stdio.h>
@@ -35,6 +38,7 @@ class SPIClass
     static void setBitOrder(uint8_t);
     static void setDataMode(uint8_t);
     static void setClockDivider(uint16_t);
+    static void usingInterrupt(uint8_t);
 };
 
 extern SPIClass SPI;
@@ -65,6 +69,10 @@ void RasPiSetup();
 void pinMode(unsigned char pin, unsigned char mode);
 
 void digitalWrite(unsigned char pin, unsigned char value);
+
+int digitalPinToInterrupt(uint8_t);
+
+void attachInterrupt(int pin, int mode, void (*function)(void));
 
 unsigned long millis();
 

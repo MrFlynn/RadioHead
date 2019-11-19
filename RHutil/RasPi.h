@@ -9,7 +9,10 @@
 
 #define RISING 2
 
-#include <wiringPi.h> // Add ISR capability.
+extern "C" {
+    #include <wiringPi.h> // Add ISR capability.
+}
+
 #include <bcm2835.h>
 
 #include <stdio.h>

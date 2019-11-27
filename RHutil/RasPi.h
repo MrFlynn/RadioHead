@@ -69,17 +69,7 @@ extern SerialSimulator Serial;
 
 void RasPiSetup();
 
-void pinMode(unsigned char pin, unsigned char mode);
-
-void digitalWrite(unsigned char pin, unsigned char value);
-
-int digitalPinToInterrupt(uint8_t);
-
-void attachInterrupt(int pin, int mode, void (*function)(void));
-
-unsigned long millis();
-
-void delay (unsigned long delay);
+void attachInterrupt(int pin, void (*function)(void), int mode);
 
 long random(long min, long max);
 

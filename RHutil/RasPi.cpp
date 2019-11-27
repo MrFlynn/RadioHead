@@ -79,51 +79,8 @@ void SPIClass::usingInterrupt(uint8_t pin) {
     return;
 }
 
-void pinMode(unsigned char pin, unsigned char mode)
-{
-  if (mode == OUTPUT)
-  {
-    bcm2835_gpio_fsel(pin,BCM2835_GPIO_FSEL_OUTP);
-  }
-  else
-  {
-    bcm2835_gpio_fsel(pin,BCM2835_GPIO_FSEL_INPT);
-  }
-}
-
-void digitalWrite(unsigned char pin, unsigned char value)
-{
-  bcm2835_gpio_write(pin,value);
-}
-
-int digitalPinToInterrupt(uint8_t pin) {
-    return (int)pin;
-}
-
-int attachInterrupt(int pin, int mode, void (*function)(void)) {
-    return wiringPiISR(pin, mode, function);
-}
-
-unsigned long millis()
-{
-  //Declare a variable to store current time
-  struct timeval RHCurrentTime;
-  //Get current time
-  gettimeofday(&RHCurrentTime,NULL);
-  //Calculate the difference between our start time and the end time
-  unsigned long difference = ((RHCurrentTime.tv_sec - RHStartTime.tv_sec) * 1000);
-  difference += ((RHCurrentTime.tv_usec - RHStartTime.tv_usec)/1000);
-  //Return the calculated value
-  return difference;
-}
-
-void delay (unsigned long ms)
-{
-  //Implement Delay function
-  struct timespec ts;
-  ts.tv_sec=0;
-  ts.tv_nsec=(ms * 1000);
-  nanosleep(&ts,&ts);
+void attachInterrupt(int pin, int mode, void (*function)(void)) {
+    wiringPiISR(pin, mode, function);
 }
 
 long random(long min, long max)
